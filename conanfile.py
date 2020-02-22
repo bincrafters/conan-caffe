@@ -50,8 +50,7 @@ class CaffeConan(ConanFile):
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
             self.requires.add("openblas/0.3.7")
-        if not tools.which("protoc"):
-            self.requires("protobuf/3.9.1@bincrafters/stable")
+        self.requires.add("protobuf/3.9.1@bincrafters/stable")
 
     def build_requirements(self):
         # waiting for an official protoc binary
