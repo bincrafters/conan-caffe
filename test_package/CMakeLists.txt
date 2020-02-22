@@ -11,7 +11,3 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} test_package.cpp)
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
-if (APPLE)
-# needed to find system protobuf on macos
-target_include_directories(${PROJECT_NAME} PRIVATE "/usr/local/include")
-endif()
