@@ -1,8 +1,8 @@
 ## Package Status
 
-| Bintray | Windows | Linux & macOS |
-|:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/caffe%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/caffe%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-caffe?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-caffe)|[![Build Status](https://travis-ci.com/bincrafters/conan-caffe.svg)](https://travis-ci.com/bincrafters/conan-caffe)|
+| Bintray | Linux & macOS |
+|:--------:|:-----------------:|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/caffe%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/caffe%3Abincrafters/_latestVersion)|[![Build Status](https://travis-ci.com/bincrafters/conan-caffe.svg)](https://travis-ci.com/bincrafters/conan-caffe)|
 
 ## Conan Information
 
