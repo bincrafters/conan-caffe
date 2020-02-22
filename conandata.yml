@@ -10,3 +10,5 @@ patches:
       patch_file: "patches/1.0/0002-openblas-include.patch"
     - base_path: "source_subfolder"
       patch_file: "patches/1.0/0003-examples.patch"
+    - base_path: "source_subfolder"
+      patch_file: "patches/1.0/0004-summary.patch"
