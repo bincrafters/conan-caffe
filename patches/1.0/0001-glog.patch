@@ -19,3 +19,31 @@ diff -ru cmake/Dependencies.cmake cmake-de/Dependencies.cmake
  
  # ---[ Google-protobuf
  include(cmake/ProtoBuf.cmake)
+diff -ru cmake/External/gflags.cmake cmake-de/External/gflags.cmake
+--- cmake/External/gflags.cmake	2017-04-15 19:17:48.000000000 +0300
++++ cmake-de/External/gflags.cmake	2020-02-22 16:44:26.000000000 +0300
+@@ -2,8 +2,8 @@
+   set(__GFLAGS_INCLUDED TRUE)
+ 
+   # use the system-wide gflags if present
+-  find_package(GFlags)
+-  if (GFLAGS_FOUND)
++  find_package(gflags)
++  if (gflags_FOUND)
+     set(GFLAGS_EXTERNAL FALSE)
+   else()
+     # gflags will use pthreads if it's available in the system, so we must link with it
+diff -ru cmake/External/glog.cmake cmake-de/External/glog.cmake
+--- cmake/External/glog.cmake	2017-04-15 19:17:48.000000000 +0300
++++ cmake-de/External/glog.cmake	2020-02-22 16:44:42.000000000 +0300
+@@ -5,8 +5,8 @@
+   set(__GLOG_INCLUDED TRUE)
+ 
+   # try the system-wide glog first
+-  find_package(Glog)
+-  if (GLOG_FOUND)
++  find_package(glog)
++  if (glog_FOUND)
+       set(GLOG_EXTERNAL FALSE)
+   else()
+     # fetch and build glog from github
