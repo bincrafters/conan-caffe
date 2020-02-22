@@ -16,3 +16,5 @@ patches:
       patch_file: "patches/1.0/0005-conan-libs.patch"
     - base_path: "source_subfolder"
       patch_file: "patches/1.0/0006-include-cblas.patch"
+    - base_path: "source_subfolder"
+      patch_file: "patches/1.0/0007-link-flags.patch"
