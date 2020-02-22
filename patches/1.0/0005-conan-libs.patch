@@ -1,10 +1,10 @@
 --- src/caffe/CMakeLists.txt	2017-04-15 19:17:48.000000000 +0300
-+++ src/caffe/CMakeLists.new.txt	2020-02-22 18:16:49.000000000 +0300
++++ src/caffe/CMakeLists.new.txt	2020-02-22 19:42:45.000000000 +0300
 @@ -8,6 +8,7 @@
  target_link_libraries(proto PUBLIC ${PROTOBUF_LIBRARIES})
  target_include_directories(proto PUBLIC ${PROTOBUF_INCLUDE_DIR})
  
-+set(Caffe_LINKER_LIBS ${CONAN_LIBS})
++set(Caffe_LINKER_LIBS ${CONAN_LIBS} ${vecLib_LINKER_LIBS})
  list(INSERT Caffe_LINKER_LIBS 0 PUBLIC proto) # note, crucial to prepend!
  
  # --[ Caffe library
