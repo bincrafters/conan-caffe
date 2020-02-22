@@ -75,6 +75,9 @@ class CaffeConan(ConanFile):
         cmake.definitions["USE_LMDB"] = self.options.with_lmdb
         cmake.definitions["USE_CUDNN"] = self.options.with_cudnn
 
+        if self.settings.os == "Linux":
+            cmake.definitions["BLAS"] = "open"
+
         cmake.configure(build_folder=self._build_subfolder)
         return cmake
 
