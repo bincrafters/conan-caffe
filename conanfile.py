@@ -90,9 +90,6 @@ class CaffeConan(ConanFile):
         for module in ['protobuf', 'protoc_installer']:
             if os.path.exists('Find'+module+'.cmake'):
                 os.unlink('Find'+module+'.cmake')
-        # do not build examples
-        tools.replace_in_file(os.path.join(self._source_subfolder, "CMakeLists.txt"),
-                              "add_subdirectory(examples)", "")
         # patch sources
         for patch in self.conan_data["patches"][self.version]:
             tools.patch(**patch)
