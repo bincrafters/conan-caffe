@@ -51,6 +51,10 @@ class CaffeConan(ConanFile):
         if self.settings.os != "Macos":
             self.requires.add("openblas/0.3.7")
         self.requires.add("protobuf/3.9.1@bincrafters/stable")
+        if self.options.with_opencv:
+            self.output.warn("OpenCV may require different protobuf than Caffe")
+            self.requires.add("opencv/4.1.1@conan/stable")
+
 
     def build_requirements(self):
         # waiting for an official protoc binary
