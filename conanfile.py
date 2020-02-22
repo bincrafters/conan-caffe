@@ -112,7 +112,10 @@ class CaffeConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, 'share'))
 
     def package_info(self):
-        self.cpp_info.libs = ["caffe", "proto"]
+        if self.settings.build_type == "Debug":
+            self.cpp_info.libs = ["caffe-d", "proto-d"]
+        else:
+            self.cpp_info.libs = ["caffe", "proto"]
         if self.settings.os == "Linux":
             self.cpp_info.system_libs = ["m"]
 
