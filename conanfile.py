@@ -50,7 +50,7 @@ class CaffeConan(ConanFile):
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
             self.requires.add("openblas/0.3.7")
-        self.requires.add("protobuf/3.9.1@bincrafters/stable")
+        self.requires.add("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
             self.requires.add("opencv/4.1.1@conan/stable")
