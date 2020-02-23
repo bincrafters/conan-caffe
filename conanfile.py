@@ -9,8 +9,7 @@ class CaffeConan(ConanFile):
     topics = ("conan", "caffe", "deep-learning", "machine-learning")
     url = "https://github.com/bincrafters/conan-caffe"
     homepage = "http://caffe.berkeleyvision.org"
-    license = "BSD-2"
-    # Remove following lines if the target lib does not use CMake
+    license = "BSD-2-Clause"
     exports_sources = ["CMakeLists.txt", "patches/*"]
     generators = "cmake", "cmake_find_package"
 
