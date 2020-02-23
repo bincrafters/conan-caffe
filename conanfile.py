@@ -49,7 +49,7 @@ class CaffeConan(ConanFile):
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
             self.requires.add("openblas/0.3.7")
-        self.requires.add("protobuf/3.9.1@bincrafters/stable")
+        self.requires.add("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
             self.requires.add("opencv/4.1.1@conan/stable")
@@ -75,6 +75,7 @@ class CaffeConan(ConanFile):
         cmake.definitions["USE_LEVELDB"] = self.options.with_leveldb
         cmake.definitions["USE_LMDB"] = self.options.with_lmdb
         cmake.definitions["USE_CUDNN"] = self.options.with_cudnn
+        cmake.definitions["PROTOBUF_PROTOC_EXECUTABLE"] = os.path.join(self.deps_cpp_info['protoc_installer'].rootpath, 'bin', 'protoc')
 
         if self.settings.os == "Linux":
             cmake.definitions["BLAS"] = "open"
