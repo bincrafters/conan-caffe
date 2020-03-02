@@ -21,7 +21,8 @@ class CaffeConan(ConanFile):
                "with_cudnn": [True, False],
                "with_opencv": [True, False],
                "with_leveldb": [True, False],
-               "with_lmdb": [True, False]
+               "with_lmdb": [True, False],
+               "gpu_arch": ["Fermi", "Kepler", "Maxwell", "Pascal", "All", "Manual"]
                }
     default_options = {"shared": False,
                        "fPIC": True,
@@ -29,7 +30,9 @@ class CaffeConan(ConanFile):
                        "with_cudnn": False,
                        "with_opencv": False,
                        "with_leveldb": False,
-                       "with_lmdb": False
+                       "with_lmdb": False,
+                       # this default ensures build with modern CUDA that omit Fermi
+                       "gpu_arch": "Kepler"
                        }
 
     _source_subfolder = "source_subfolder"
@@ -39,6 +42,8 @@ class CaffeConan(ConanFile):
     def configure(self):
         if self.settings.os == "Windows":
             raise ConanInvalidConfiguration("This library is not compatible with Windows")
+        if not self.options.with_gpu:
+            del self.options.gpu_arch
 
     def requirements(self):
         self.requires.add("boost/1.72.0")
@@ -76,6 +81,9 @@ class CaffeConan(ConanFile):
         cmake.definitions["USE_LMDB"] = self.options.with_lmdb
         cmake.definitions["USE_CUDNN"] = self.options.with_cudnn
         cmake.definitions["PROTOBUF_PROTOC_EXECUTABLE"] = os.path.join(self.deps_cpp_info['protoc_installer'].rootpath, 'bin', 'protoc')
+
+        if self.options.with_gpu:
+            cmake.definitions["CUDA_ARCH_NAME"] = self.options.gpu_arch
 
         if self.settings.os == "Linux":
             cmake.definitions["BLAS"] = "open"
