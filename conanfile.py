@@ -22,7 +22,10 @@ class CaffeConan(ConanFile):
                "with_opencv": [True, False],
                "with_leveldb": [True, False],
                "with_lmdb": [True, False],
-               "gpu_arch": ["Fermi", "Kepler", "Maxwell", "Pascal", "All", "Manual"]
+               "gpu_arch": ["Fermi", "Kepler", "Maxwell", "Pascal", "All", "Manual"],
+               # following options are valid when gpu_arch=Manual
+               "gpu_arch_bin": "ANY",
+               "gpu_arch_ptx": "ANY"
                }
     default_options = {"shared": False,
                        "fPIC": True,
@@ -32,7 +35,9 @@ class CaffeConan(ConanFile):
                        "with_leveldb": False,
                        "with_lmdb": False,
                        # this default ensures build with modern CUDA that omit Fermi
-                       "gpu_arch": "Kepler"
+                       "gpu_arch": "Kepler",
+                       "gpu_arch_bin": "",
+                       "gpu_arch_ptx": ""
                        }
 
     _source_subfolder = "source_subfolder"
@@ -84,6 +89,9 @@ class CaffeConan(ConanFile):
 
         if self.options.with_gpu:
             cmake.definitions["CUDA_ARCH_NAME"] = self.options.gpu_arch
+            if self.options.gpu_arch == "Manual":
+                cmake.definitions["CUDA_ARCH_BIN"] = self.options.gpu_arch_bin
+                cmake.definitions["CUDA_ARCH_PTX"] = self.options.gpu_arch_ptx
             cmake.definitions["CUDA_NVCC_FLAGS"] = '-std=c++11'
 
         if self.settings.os == "Linux":
