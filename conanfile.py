@@ -58,7 +58,7 @@ class CaffeConan(ConanFile):
         # caffe supports those BLAS implementations: openblas, mkl, accelerate, atlas
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
-            self.requires.add("openblas/0.3.9")
+            self.requires.add("openblas/0.3.10")
         self.requires.add("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
@@ -67,7 +67,7 @@ class CaffeConan(ConanFile):
 
     def build_requirements(self):
         # waiting for an official protoc binary
-        self.build_requires("protoc_installer/3.9.1@bincrafters/stable")
+        self.build_requires("protobuf/3.9.1")
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
@@ -85,7 +85,7 @@ class CaffeConan(ConanFile):
         cmake.definitions["USE_LEVELDB"] = self.options.with_leveldb
         cmake.definitions["USE_LMDB"] = self.options.with_lmdb
         cmake.definitions["USE_CUDNN"] = self.options.with_cudnn
-        cmake.definitions["PROTOBUF_PROTOC_EXECUTABLE"] = os.path.join(self.deps_cpp_info['protoc_installer'].rootpath, 'bin', 'protoc')
+        cmake.definitions["PROTOBUF_PROTOC_EXECUTABLE"] = os.path.join(self.deps_cpp_info['protobuf'].rootpath, 'bin', 'protoc')
 
         if self.options.with_gpu:
             cmake.definitions["CUDA_ARCH_NAME"] = self.options.gpu_arch
