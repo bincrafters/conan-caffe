@@ -51,18 +51,18 @@ class CaffeConan(ConanFile):
             del self.options.gpu_arch
 
     def requirements(self):
-        self.requires.add("boost/1.72.0")
-        self.requires.add("glog/0.4.0")
-        self.requires.add("gflags/2.2.2")
-        self.requires.add("hdf5/1.10.6")
+        self.requires("boost/1.72.0")
+        self.requires("glog/0.4.0")
+        self.requires("gflags/2.2.2")
+        self.requires("hdf5/1.10.6")
         # caffe supports those BLAS implementations: openblas, mkl, accelerate, atlas
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
-            self.requires.add("openblas/0.3.10")
-        self.requires.add("protobuf/3.9.1")
+            self.requires("openblas/0.3.10")
+        self.requires("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
-            self.requires.add("opencv/4.1.1@conan/stable")
+            self.requires("opencv/4.1.1@conan/stable")
 
 
     def build_requirements(self):
