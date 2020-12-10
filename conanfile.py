@@ -58,11 +58,11 @@ class CaffeConan(ConanFile):
         # caffe supports those BLAS implementations: openblas, mkl, accelerate, atlas
         # Choose Accelerate for MAC and openblas otherwise
         if self.settings.os != "Macos":
-            self.requires("openblas/0.3.10")
+            self.requires("openblas/0.3.12")
         self.requires("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
-            self.requires("opencv/4.1.1@conan/stable")
+            self.requires("opencv/4.5.0")
 
 
     def build_requirements(self):
