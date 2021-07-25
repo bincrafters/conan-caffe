@@ -62,7 +62,7 @@ class CaffeConan(ConanFile):
         self.requires("protobuf/3.9.1")
         if self.options.with_opencv:
             self.output.warn("OpenCV may require different protobuf than Caffe")
-            self.requires("opencv/4.5.1")
+            self.requires("opencv/4.5.2")
 
 
     def build_requirements(self):
